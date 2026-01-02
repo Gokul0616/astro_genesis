@@ -165,6 +165,18 @@ frontend:
           agent: "testing"
           comment: "✅ TESTED SUCCESSFULLY: Civilization builder loads with 'Neo Terra Colony' title. Resource displays (Energy, Minerals, Colonists) are visible and functional. Grid slots are clickable and open construction menu. Solar Array can be built successfully - building is placed on grid with sun icon, resources are managed properly (with generation system), and 'Solar Array Constructed!' toast notification appears."
 
+  - task: "3D Space Flight Mechanics - SpaceFlightSim with Three.js"
+    implemented: true
+    working: "NA"
+    file: "/app/frontend/src/components/game/SpaceFlightSim.jsx"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: true
+    status_history:
+        - working: "NA"
+          agent: "testing"
+          comment: "New 3D Space Flight mechanics implemented with Three.js. Needs comprehensive testing of: 3D Canvas loading, INT/EXT toggle switch, Mission Log/Comms overlay, Speed Bar, flight completion and transition to Civilization Builder, WebGL/Three.js error checking."
+
 metadata:
   created_by: "testing_agent"
   version: "1.0"
