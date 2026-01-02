@@ -183,10 +183,11 @@ metadata:
   test_sequence: 1
 
 test_plan:
-  current_focus: []
+  current_focus:
+    - "3D Space Flight Mechanics - SpaceFlightSim with Three.js"
   stuck_tasks: []
   test_all: false
-  test_priority: "sequential"
+  test_priority: "high_first"
 
 agent_communication:
     - agent: "testing"
