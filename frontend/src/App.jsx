@@ -2,7 +2,7 @@ import React from 'react';
 import { useGameStore } from './lib/store';
 import IntroScreen from './components/game/IntroScreen';
 import PlanetSelector from './components/game/PlanetSelector';
-import TravelMinigame from './components/game/TravelMinigame';
+import SpaceFlightSim from './components/game/SpaceFlightSim'; // New 3D Component
 import CivilizationBuilder from './components/game/CivilizationBuilder';
 import { Toaster } from './components/ui/sonner';
 import { AnimatePresence, motion } from 'framer-motion';
@@ -12,14 +12,18 @@ export default function App() {
 
   return (
     <div className="relative min-h-screen w-full overflow-hidden bg-background text-foreground font-body select-none">
-      {/* Background Layer */}
-      <div 
-        className="absolute inset-0 z-0 bg-cover bg-center opacity-40"
-        style={{ 
-          backgroundImage: `url('https://static.prod-images.emergentagent.com/jobs/56303e92-a55e-4365-b7ca-7ced0e33a6a7/images/98bad85ea7e4a2847571b935a503b9aaf0cff726f285cea413290f7221509354.png')`
-        }}
-      />
-      <div className="absolute inset-0 z-0 bg-gradient-dark opacity-80" />
+      {/* Background Layer - Only visible when NOT in 3D mode */}
+      {currentStage !== 'travel' && (
+        <>
+          <div 
+            className="absolute inset-0 z-0 bg-cover bg-center opacity-40"
+            style={{ 
+              backgroundImage: `url('https://static.prod-images.emergentagent.com/jobs/56303e92-a55e-4365-b7ca-7ced0e33a6a7/images/98bad85ea7e4a2847571b935a503b9aaf0cff726f285cea413290f7221509354.png')`
+            }}
+          />
+          <div className="absolute inset-0 z-0 bg-gradient-dark opacity-80" />
+        </>
+      )}
       
       {/* Content Layer */}
       <div className="relative z-10 w-full h-full">
@@ -48,15 +52,16 @@ export default function App() {
             </motion.div>
           )}
           
+          {/* New 3D Travel Stage */}
           {currentStage === 'travel' && (
             <motion.div 
               key="travel"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="w-full h-full"
+              className="w-full h-screen" // Full screen for canvas
             >
-              <TravelMinigame />
+              <SpaceFlightSim />
             </motion.div>
           )}
           

@@ -11,6 +11,8 @@ export const useGameStore = create((set, get) => ({
   // Travel State
   travelProgress: 0, // 0 to 100
   shipHealth: 100,
+  isInsideView: false, // New: Toggle for cockpit view
+  flightSpeed: 0,      // New: Current speed for realistic feel
   
   // Civilization State
   resources: {
@@ -20,6 +22,9 @@ export const useGameStore = create((set, get) => ({
   },
   buildings: [], // Array of { id, type, x, y, level }
   
+  // Narrative State
+  activeComms: null, // { speaker: string, message: string, type: 'info' | 'alert' }
+
   // Actions
   setStage: (stage) => set({ currentStage: stage }),
   selectPlanet: (planet) => set({ selectedPlanet: planet }),
@@ -30,6 +35,10 @@ export const useGameStore = create((set, get) => ({
       set({ currentStage: 'game-over' });
     }
   },
+  toggleView: () => set((state) => ({ isInsideView: !state.isInsideView })),
+  setFlightSpeed: (speed) => set({ flightSpeed: speed }),
+  setComms: (comms) => set({ activeComms: comms }),
+  
   addResource: (type, amount) => set((state) => ({
     resources: {
       ...state.resources,
@@ -50,7 +59,10 @@ export const useGameStore = create((set, get) => ({
     selectedPlanet: null,
     travelProgress: 0,
     shipHealth: 100,
+    isInsideView: false,
+    flightSpeed: 0,
     resources: { energy: 100, minerals: 50, population: 10 },
-    buildings: []
+    buildings: [],
+    activeComms: null
   })
 }));
